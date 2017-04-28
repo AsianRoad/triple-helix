@@ -53,6 +53,14 @@ def select_paginate(page):
         return None
     return None
 
+def select_paginate_by_add(area,page):
+    try:
+        pagination = Sheet_Form.query.filter(Sheet_Form.address.like('%'+area+'%')).paginate(page,per_page=6,error_out=False)
+        return pagination
+    except IOError:
+        return None
+    return None
+
 if __name__ == '__main__':
     abc = select_id(1)
     print abc.company

@@ -1,35 +1,7 @@
-{% extends "bootstrap/base.html" %}
-{% block title %}三螺旋大数据{% endblock %}
-{% block head %}
-    {{ super() }}
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+{% extends "index.html" %}
 
-    <link rel="shortcut icon" href="../static/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="../static/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../static/css/custom.css">
-
-{% endblock %}
-{% block navbar %}
-    <div class="navbar navbar-inverse" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="./index.html">三螺旋</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url_for('blank') }}">主页</a></li>
-                    <li><a href="{{ url_for('order') }}">订单列表</a></li>
-                    <li><a href="{{ url_for('about') }}">确认订单</a> </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-{% endblock %}
 {% block content %}
-<div class="container">
-
-     <div class="container">
+         <div class="container">
         <div class="row page-header">
             <h1>检索企业需求</h1>
         </div>
@@ -51,8 +23,8 @@
             <label class="control-label" for="subject">您可能在找这些学科</label>
         </div>
         <div class="row">
-            <input type="checkbox" checked="checked"> 北京
-            <input type="checkbox" checked="checked"> 上海
+            <input type="checkbox" checked="checked"> 土木工程
+            <input type="checkbox" checked="checked"> 机械工程
             <input type="checkbox"> 核科学与技术
             <input type="checkbox"> 生物学
             <input type="checkbox"> 冶金工程
@@ -93,25 +65,22 @@
             <input class="btn btn-default" id="submit-user" name="submit-user" type="submit" value="提交">
         </div>
         <div class="row-space"></div>
-
-     </div>
-     <nav class="pagination-bottom" style="text-align: center">
+    <nav class="pagination-bottom" style="text-align: center">
           <ul class="pagination">
                 <li{% if not pagination.has_prev %} class="disabled"{% endif %}>
-{#                    <a href="{% if pagination.has_prev %}{{ url_for('company', page=pagination.prev_num) }}{% else %}#{% endif %}">#}
-{#                        «#}
-{#                    </a>#}
-                    <a href="/index/{{ pagination.prev_num }}">«</a>
+                    <a href="{% if pagination.has_prev %}{{ url_for('add',area=name ,page=pagination.prev_num) }}{% else %}#{% endif %}">
+                        «
+                    </a>
                 </li>
                 {% for p in pagination.iter_pages() %}
                     {% if p %}
                         {% if p == pagination.page %}
                         <li class="active">
-                            <a href="{{ url_for('company', page = p) }}">{{ p }}</a>
+                            <a href="{{ url_for('add',area=name, page = p) }}">{{ p }}</a>
                         </li>
                         {% else %}
                         <li>
-                            <a href="{{ url_for('company', page = p) }}">{{ p }}</a>
+                            <a href="{{ url_for('add',area=name, page = p) }}">{{ p }}</a>
                         </li>
                         {% endif %}
                     {% else %}
@@ -119,18 +88,11 @@
                     {% endif %}
                 {% endfor %}
                 <li{% if not pagination.has_next %} class="disabled"{% endif %}>
-                    <a href="{% if pagination.has_next %}{{ url_for('company',page=pagination.next_num) }}{% else %}#{% endif %}">
+                    <a href="{% if pagination.has_next %}{{ url_for('add',area=name,page=pagination.next_num) }}{% else %}#{% endif %}">
                     »
                     </a>
                 </li>
-            </ul>
-        </nav>
-</div>
+          </ul>
+    </nav>
+         </div>
 {% endblock %}
-
-
-{% block scripts %}
-    {{ super() }}
-    <script type = "text/javascript" src = "../static/js/script.js"></script>
-{% endblock %}
-

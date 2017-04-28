@@ -3,6 +3,7 @@
 from flask import render_template
 from models import select_all
 from models import select_paginate
+from models import select_paginate_by_add
 from jizhuan import app
 
 
@@ -29,3 +30,8 @@ def about():
 @app.route('/order_list')
 def order():
     return render_template('order_list.html')
+
+@app.route('/<string:area>/<int:page>')
+def add(area,page):
+    pagination = select_paginate_by_add(area,page)
+    return render_template('add.html',title="三螺旋",pagination=pagination,name=area)
