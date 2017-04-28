@@ -5,6 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from jizhuan import app
 from flask_bootstrap import Bootstrap
 
+
 app.config['SECRET_KEY'] = 'hard to guess'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:root@localhost:3306/web'#的是root用户，要填上自己的密码，MySQL的默认端口是3306，填上之前创建的数据库名text1
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True #设置这一项是每次请求结束后都会自动提交数据库中的变动

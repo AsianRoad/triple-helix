@@ -65,7 +65,7 @@
         </div>
         <div class="row-space"></div>
             <div class="row-fluid">
-                {% for f in all %}
+                {% for f in pagination.items %}
                     {% if f.id %}
                     <div class="col-md-3 col-sm-3 col-xs-3 panel panel-default panel-user">
                         <h3>{{ f.company }}</h3>

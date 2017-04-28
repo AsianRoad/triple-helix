@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding:utf8 -*-
-from flask import render_template
+from flask import render_template, request
 from models import select_all
 from models import select_paginate
 from models import select_paginate_by_add
@@ -16,12 +16,12 @@ def blank():
 @app.route('/all')
 def all():
     info_all = select_all()
-    return render_template('all.html',title='三螺旋',form=info_all)
+    return render_template('all.html',title='三螺旋',all=info_all)
 
 @app.route('/index/<int:page>')
 def company(page):
     pagination = select_paginate(page)
-    return render_template('index.html',title= "三螺旋",pagination=pagination)
+    return render_template('index.html',title= '三螺旋',pagination=pagination)
 
 @app.route('/order_confirm')
 def about():
@@ -35,3 +35,8 @@ def order():
 def add(area,page):
     pagination = select_paginate_by_add(area,page)
     return render_template('add.html',title="三螺旋",pagination=pagination,name=area)
+
+@app.route('/demand')
+def demand():
+    content = request.args.get('requirement')
+    return add(content,1)
