@@ -7,10 +7,11 @@ $(document).ready(function() {
         } else {
             $(this).addClass('panel-user-check');
         }
-    })
-
+    });
+    //
+    // 这段代码一直用不了
     // 点击“提交”按钮
     $('#submit-user').click(function() {
-        location.href = './order_confirm.html';
-    })
-})
+        location.href = './all.html';
+    });
+});

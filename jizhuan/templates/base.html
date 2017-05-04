@@ -14,7 +14,7 @@
     <div class="navbar navbar-inverse" role="navigation">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="./index.html">三螺旋</a>
+                <a class="navbar-brand" href="{{ url_for('blank') }}">三螺旋</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -42,7 +42,7 @@
         <div class="row-space"></div>
 
         <div class="row text-right">
-            <input class="btn btn-default" id="submit" name="submit" type="submit" value="搜索" href="{{ url_for('blank') }}">
+            <input class="btn btn-default" id="submit" name="submit" type="submit" value="搜索" href="{{ url_for('demand') }}">
         </div>
         </form>
         <div class="row-space"></div>
@@ -50,27 +50,29 @@
         <div class="row">
             <label class="control-label" for="subject">您可能在找这些学科</label>
         </div>
-        <div class="row">
-            <input type="checkbox" checked="checked"> 北京
-            <input type="checkbox" checked="checked"> 上海
-            <input type="checkbox"> 核科学与技术
-            <input type="checkbox"> 生物学
-            <input type="checkbox"> 冶金工程
-            <input type="checkbox"> 材料科学与工程
-        </div>
-        <div class="row-space"></div>
+         <form id="AddressSelect" action="./search">
+            <div class="row">
+                <input type="checkbox" name="address" value="北京"> 北京市
+                <input type="checkbox" name="address" value="上海"> 上海市
+                <input type="checkbox" name="address" value="浙江"> 浙江省
+                <input type="checkbox" name="address" value="江苏"> 江苏省
+                <input type="checkbox" name="address" value="广东"> 广东省
+                <input type="checkbox" name="address" value="安徽"> 安徽省
+            </div>
+         <div class="row-space"></div>
 
         <div class="row text-right">
             <input class="btn btn-default" id="submit" name="submit" type="submit" value="搜索">
         </div>
+         </form>
         <div class="row-space"></div>
-            <div class="row-fluid">
+            <div class="row">
                 {% for f in pagination.items %}
                     {% if f.id %}
                     <div class="col-md-3 col-sm-3 col-xs-3 panel panel-default panel-user">
                         <h3>{{ f.company }}</h3>
                         <div class="user-info-university">
-                            <span><a>{{ f.url }}</a></span>
+                            <span><a href="{{ f.url }}">{{ f.url }}</a></span>
                         </div>
                         <div class="user-info-subject">
                             <span>联系电话:{{ f.tel }}</span>
